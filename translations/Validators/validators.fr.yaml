@@ -1,0 +1,17 @@
+constraint:
+  user:
+    unique: "Un utilisateur avec cette adresse email existe déja"
+    email:
+      notblank: "L'adresse email doit etre renseignée"
+      format: "L'adresse email doit etre au bon format"
+    password:
+      compromise: "Mot de passe compromis merci d'en selectionner un autre"
+      notBlank: "Un mot de passe est necessaire"
+      invalidDuo: "Les mots de passe ne correspondent pas"
+      minLenght: "Le mode de passe doit contenir au moin 5 caracteres"
+    firstname:
+      notblank: "Un prenom est obligatoire"
+    lastname:
+      notblank: "Un nom est obligatoire"
+
+

@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain "kitchen-project" %}
+
+{% block title %}
+    {{ "title.signup"|trans }}
+{% endblock %}
+
+{% block body %}
+    <section class="view">
+        <div class="mask rgba-gradient">
+            <div class="col-md-4 offset-4">
+                <div class="row  pt-5 mt-3">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 class="font-weight-bold my-4 text-center mb-5 mt-4 font-weight-bold">
+                                    <strong>{{ "title.signup"|trans }}</strong>
+                                </h2>
+                                <hr>
+                                {{ form_start(formUser) }}
+                                <div class="col-md-12">
+                                    <div class="md-form">
+                                        <i class="fas fa-user prefix"></i>
+                                        {{ form_label(formUser.email) }}
+                                        {{ form_widget(formUser.email) }}
+                                    </div>
+                                    <div class="md-form">
+                                        <i class="fas fa-user prefix"></i>
+                                        {{ form_label(formUser.firstname) }}
+                                        {{ form_widget(formUser.firstname) }}
+                                    </div>
+                                    <div class="md-form">
+                                        <i class="fas fa-envelope prefix"></i>
+                                        {{ form_label(formUser.lastname) }}
+                                        {{ form_widget(formUser.lastname) }}
+                                    </div>
+
+                                    <div class="md-form">
+                                        <i class="fas fa-lock prefix"></i>
+                                        {{ form_label(formUser.password.first) }}
+                                        {{ form_widget(formUser.password.first) }}
+                                    </div>
+                                    <div class="md-form">
+                                        <i class="fas fa-lock prefix"></i>
+                                        {{ form_label(formUser.password.second) }}
+                                        {{ form_widget(formUser.password.second) }}
+                                    </div>
+                                    <div class="text-center">
+                                        {{ form_widget(formUser.submit) }}
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="btn" href="{{ path('app_home') }}">{{ "form.button.return"|trans }}</a>
+                                    </div>
+                                </div>
+                                {{ form_end(formUser) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Intro Section-->
+{% endblock %}

@@ -1,42 +1,61 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Log in!{% endblock %}
+{% trans_default_domain "kitchen-project" %}
+{% block title %}{{ "title.login"|trans }}{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    <section class="view">
+        <div class="mask rgba-stylish-strong h-100 d-flex justify-content-center align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 mx-auto mt-lg-5">
+                        <!--Form with header-->
+                        <div class="card wow fadeIn" data-wow-delay="0.3s">
+                            <div class="card-body">
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                                <!--Header-->
+                                <div class="form-header purple-gradient">
+                                    <h3><i class="fas fa-user mt-2 mb-2"></i> {{ "title.login"|trans }} :</h3>
+                                </div>
+                                <form method="post">
+                                    {% if error %}
+                                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                    {% endif %}
+
+                                    {% if app.user %}
+                                        <div class="mb-3 text-center">
+                                            {{ "user.text.alreadyLogged"|trans({"%email%":app.user.userIdentifier}) }}
+                                            <br><a class="text-danger" href="{{ path('app_logout') }}">{{ "user.button.logout"|trans }}</a>
+                                        </div>
+                                    {% endif %}
+                                    <!--Body-->
+                                    <div class="md-form">
+                                        <i class="fas fa-envelope prefix white-text"></i>
+                                        <label for="inputEmail">{{ "user.label.email"|trans }}</label>
+                                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                                    </div>
+
+                                    <div class="md-form">
+                                        <i class="fas fa-lock prefix white-text"></i>
+                                        <label for="inputPassword">{{ "user.label.password"|trans }}</label>
+                                        <input type="password" name="password" id="inputPassword" class="form-control"
+                                               autocomplete="current-password" required>
+                                    </div>
+                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                                    <div class="text-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="_remember_me" type="checkbox" id="flexCheckDefault" />
+                                            <label class="form-check-label" for="flexCheckDefault">{{ "form.checkbox.rememberMe"|trans }}</label>
+                                        </div>
+                                        <button class="btn btn-lg btn-primary" type="submit">
+                                            {{ "form.button.login"|trans }}
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+    </section>
 {% endblock %}

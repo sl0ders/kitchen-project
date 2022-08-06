@@ -1,0 +1,26 @@
+form:
+  button:
+    save: "Enregistrer"
+    return: 'Retour'
+    login: 'Se connecter'
+  checkbox:
+    rememberMe: 'Se souvenir de moi'
+
+user:
+  success:
+    signup: 'Succés de votre inscription !'
+  label:
+    email: "Adresse email"
+    password: "Mot de passe"
+    repeatPassword: "Confirmation du mot de passe"
+    firstname: "Prenom"
+    lastname: "Nom de famille"
+  invalid:
+    password: "Les mots de passe ne correspondent pas"
+  button:
+    logout: 'Se déconnecter'
+  text:
+    alreadyLogged: 'Vous êtes déja connecté en tant que %email%'
+title:
+  signup: 'Enregistrement'
+  login: 'Connection'
