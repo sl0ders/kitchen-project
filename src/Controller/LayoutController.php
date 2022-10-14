@@ -2,15 +2,18 @@
 
 namespace App\Controller;
 
+use App\Repository\NotifyRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
 class LayoutController extends AbstractController
 {
-    public function headerAction(): Response
+    public function headerAction(NotifyRepository $repository): Response
     {
-        ;        return $this->render('layout/_header.html.twig', [
-    ]);
+        $notifies = $repository->findBy(["receiver" => $this->getUser()], [], 10);
+        return $this->render('layout/_header.html.twig', [
+            "notifies" => $notifies
+        ]);
     }
 
     public function leftSideAction(): Response

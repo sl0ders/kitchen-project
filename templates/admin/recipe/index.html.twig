@@ -1,20 +1,50 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
+{% trans_default_domain 'kitchen-project' %}
 
-{% block title %}Hello RecipeController!{% endblock %}
+{% block title %}{{ "title.recipe.admin.index"| trans }}{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1 class="text-center mt-5">{{ "title.recipe.admin.index"| trans }}</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <table class="table" id="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>BackgroundFilename</th>
+                <th>CreatedAt</th>
+                <th>UpdateAt</th>
+                <th>Resume</th>
+                <th>Enabled</th>
+                <th>PathBackground</th>
+                <th>IsEnabled</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for recipe in recipes %}
+            <tr>
+                <td>{{ recipe.id }}</td>
+                <td>{{ recipe.title }}</td>
+                <td>{{ recipe.backgroundFilename }}</td>
+                <td>{{ recipe.createdAt ? recipe.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ recipe.updateAt ? recipe.updateAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ recipe.resume }}</td>
+                <td>{{ recipe.enabled ? 'Yes' : 'No' }}</td>
+                <td>{{ recipe.pathBackground }}</td>
+                <td>{{ recipe.isEnabled ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('admin_recipe_show', {'id': recipe.id}) }}"><span class="fa fa-eye text-primary fa-lg"></span></a>
+                    <a href="{{ path('admin_recipe_edit', {'id': recipe.id}) }}"><span class="fa fa-edit text-warning fa-lg"></span></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">{{ 'text.noRecordsFound' | trans }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/quent/IdeaProjects/Kitchen-project/src/Controller/Admin/RecipeController.php'|file_link(0) }}">src/Controller/Admin/RecipeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/quent/IdeaProjects/Kitchen-project/templates/admin/recipe/index.html.twig'|file_link(0) }}">templates/admin/recipe/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <a href="{{ path('admin_recipe_new') }}" class="btn btn-success btn-lg text-white" style="width:50px; height:50px"><span class="fa fa-plus text-success fa-lg"></span></a>
 {% endblock %}

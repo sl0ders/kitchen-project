@@ -21,6 +21,15 @@ class RecipeRepository extends ServiceEntityRepository
         parent::__construct($registry, Recipe::class);
     }
 
+    public function getLastsRecipe() {
+        return $this->createQueryBuilder('r')
+            ->orderBy('r.createdAt', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     public function add(Recipe $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain "kitchen-project" %}
+
+{% block title %}{{ "title.recipe.new"| trans }}{% endblock %}
+
+{% block body %}
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalStepOne">
+        {{ "text.recipe.construction.stepOne"|trans }}
+    </button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalStepTwo">
+        {{ "text.recipe.construction.stepTwo"|trans }}
+    </button>
+    {{ form_start(formRecipe) }}
+    {{ include('Modals/_recipe_modal.html.twig', {'formRecipe': formRecipe}) }}
+    {{ form_row(formRecipe.submit) }}
+{#    {{ include('Modals/_step_modal.html.twig', {'formStep': formStep}) }}#}
+    {{ form_end(formRecipe) }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(".btn-validate-step").on("click",()=> {
+            $.ajax({
+                url: '{{ path('app_recipe_new') }}',
+                method: 'POST',
+                data: {
+                    ingredientArray: listIngredients
+                },
+                dataType: "json",
+                success: function (data) {
+                if (data) {
+                    console.log(data)
+                } else
+                    alert("vide");
+            }
+        }, "json");
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'admin/base.html.twig' %}
+{% trans_default_domain 'kitchen-project' %}
+
+{% block title %}{{ "title.ingredient.edit"| trans({"%object%" : ingredient.name}) }}{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mt-5">{{ "title.ingredient.edit"| trans({"%object%" : ingredient.name}) }}</h1>
+
+    {{ include('admin/ingredients/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('admin_ingredients_index') }}">back to list</a>
+
+    {{ include('admin/ingredients/_delete_form.html.twig') }}
+{% endblock %}

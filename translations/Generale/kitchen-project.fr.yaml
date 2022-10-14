@@ -1,11 +1,31 @@
+button:
+  create: "Créer"
+  update: "Mettre a jour"
+  delete: "Supprimer"
+  show: "Visualiser"
+  recipe:
+    addFavorite: 'Ajouter au favorie'
+    consulting: 'Voir'
+    removeFavorite: 'enlever des favories'
+    propose: 'Proposer une recette'
+header:
+  button:
+    my_account: 'Mon compte'
+    management: 'Gestion'
+    signIn: 'Se connecter'
+    signUp: "S'inscrire"
+    logout: 'Se déconnecter'
 form:
   button:
     save: "Enregistrer"
     return: 'Retour'
     login: 'Se connecter'
+    add: 'Ajout'
+    nextStep: 'Étape suivante'
+    close: 'Fermer'
+    validateIngredient: "Valider les ingredients"
   checkbox:
     rememberMe: 'Se souvenir de moi'
-
 user:
   success:
     signup: 'Succés de votre inscription !'
@@ -21,6 +41,168 @@ user:
     logout: 'Se déconnecter'
   text:
     alreadyLogged: 'Vous êtes déja connecté en tant que %email%'
+  table:
+    id: "Id de l'utilisateur"
+    createdAt: 'Commentaire créer le'
+    enabled: 'Actif ?'
+    actions: 'Actions'
 title:
   signup: 'Enregistrement'
   login: 'Connection'
+  recipe:
+    admin:
+      index: 'Liste des recettes'
+      show: "Détail de la recette %object%"
+    index: 'Liste des recettes'
+    edit: 'Édition de la recette recettes %object%'
+    new: "Création d'une recette"
+    delete: "Suppression de la recette %object%"
+    favorite: 'kitchen-project'
+  comment:
+    admin:
+      index: 'Liste des commentaires'
+      show: "Détail du commentaire %object%"
+    edit: 'Édition des commentaires %object%'
+    delete: "Suppression du commentaire %object%"
+    new: "Creation d'un commentaire"
+    show: 'Modification de votre recette %object%'
+    index: 'Vos recettes commentées'
+  step:
+    admin:
+      index: 'Liste des étapes'
+      show: "Détail de l'etape %object%"
+    edit: "Édition de l'étapes %object%"
+    new: "Création d'une etape"
+    delete: "Suppression de l'étape %object%"
+  notify:
+    admin:
+      index: 'Liste des notifications'
+      show: "Détail de la notification %object%"
+    edit: "Édition de la notification"
+    new: "Création d'une notification"
+    delete: "Suppression de la notification"
+  user:
+    admin:
+      index: 'Liste des utilisateurs'
+      show: "Détail de l'utilisateur %object%"
+    edit: "Édition de l'utilisateur %object%"
+    new: "Création d'un utilisateur"
+    delete: "Suppression de l'utilisateur %object%"
+    show: 'Votre compte'
+    recipe: 'Vos recettes'
+    favorite: 'Vos recettes favorites'
+    participation: 'Vos participations'
+    index: "Page d'acceuil"
+  ingredient:
+    admin:
+      index: 'Liste des ingredients'
+      show: "Détail de l'ingredient %object%"
+    edit: "Édition de l'ingredient %object%"
+    new: "Création d'un ingredient"
+    delete: "Suppression de l'ingredient %object%"
+  mark:
+    admin:
+      index: 'Liste des notes'
+    new: "Création d'une note"
+    delete: "Suppression de la note"
+    index: 'Vos recette notés'
+  picture:
+    admin:
+      index: 'Liste des images'
+      show: "Details de l'image %object%"
+    new: "Création d'une image"
+    delete: "Suppression de l'image'"
+    edit: "Édition de l'image %object%"
+recipe:
+  label:
+    pictures: "Les images de ma recette"
+    title: "Titre"
+    resume: "Resumé"
+    bg: "Fond d'ecran"
+    authorFullname: 'Auteur'
+    enabled: 'Actif ?'
+    updatedAt: 'Mis a jour le'
+    createdAt: 'Créer le'
+    stepsCount: "Nb d'etapes"
+
+  success:
+    create: "Félicitations pour la création de votre nouvelle recette"
+  table:
+    id: 'Id de la recette'
+    createdAt: 'Commentaire créer le'
+    enabled: 'Actif ?'
+    isParticipatory: 'Participations'
+    actions: 'Actions'
+step:
+  label:
+    content: "Description de l'etape"
+    time: "Durée moyen de l'étape"
+    IsCooking: "Cuisson ?"
+    ingredient:
+      name: "Nom de l'ingredient"
+      quantity: "Quantity d'ingredient"
+      unity: "Unitée de l'ingredient"
+  table:
+    id: 'Id du commentaire'
+    content: 'Contenu du commentaire'
+    createdAt: 'Commentaire créer le'
+    enabled: 'Actif ?'
+    isParticipatory: 'Participations'
+    actions: 'Actions'
+notify:
+  success:
+    objectCreated: "L'%object% a bien été créé"
+  table:
+    id: 'Id du commentaire'
+    content: 'Contenu du commentaire'
+    createdAt: 'Commentaire créer le'
+    enabled: 'Actif ?'
+    isParticipatory: 'Participations'
+    actions: 'Actions'
+mark:
+  table:
+    id: 'Id de la note'
+    quantity: 'Note'
+    createdAt: 'Noté le'
+    actions: 'Action'
+
+admin:
+  title:
+    index: 'kitchen-project'
+  recipe:
+    newSuccessfully: 'Succée de la creation de la recette'
+    updateSuccessfully: 'Succée de la mise a jour de la recette'
+    disabledSuccessfully: 'La recette a bien été desactivée'
+    enabledSuccessfully: 'La recette a bien été activée'
+    deleteSuccessfully: 'La recette a bien été supprimée'
+  leftSide:
+    recipeManagement: 'Gestion des recettes'
+    commentManagement: 'Gestion des commentaires'
+    ingredientManagement: 'Gestion des Ingredients'
+    markManagement: 'Gestion des notes'
+    pictureManagement: 'Gestion des images'
+    stepManagement: 'Gestion des etapes'
+    notifyManagement: 'Gestion des notifications'
+text:
+  recipe:
+    construction:
+      stepOne: "Étape n°1 : Intitulé de la recette"
+      stepTwo: "Étape n°2 : Les étapes de la recette"
+    recipe: 'Recette'
+  steps: 'Les étapes :'
+  noRecordsFound: 'Aucun resultat'
+
+input:
+  placeholder:
+    search: 'Rechercher'
+leftSide:
+  title: 'Menu'
+  recipeList: 'Liste des recettes'
+  myRecipe: 'Mes recettes'
+  myParticipation: 'Mes participations'
+  myAccount: 'Mon compte'
+  myFavorite: 'Mes favorites'
+message:
+  addLikeRecipeSuccessfully: 'Votre like a bien été pris en compte'
+  addFavoriteRecipeSuccessfully: 'La recette a bien été ajouté a vos favories'
+  removeFavoriteRecipeSuccessfully: 'kitchen-project'

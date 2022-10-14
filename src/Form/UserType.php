@@ -19,7 +19,6 @@ class UserType extends AbstractType
 
     public function __construct(TranslatorInterface $translator)
     {
-
         $this->translator = $translator;
     }
 
@@ -38,7 +37,6 @@ class UserType extends AbstractType
             ->add('password', RepeatedType::class, [
                 "type" => PasswordType::class,
                 'invalid_message' => $this->translator->trans("constraint.user.password.invalidDuo", [], "validators"),
-                'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
                 'first_options'  => ['label' => 'user.label.password'],
                 'second_options' => ['label' => 'user.label.repeatPassword'],

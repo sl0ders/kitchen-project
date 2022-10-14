@@ -26,6 +26,12 @@ class Notify
     #[ORM\Column(length: 255)]
     private ?string $reason = null;
 
+    #[ORM\Column]
+    private ?bool $isRead = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $object = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +81,30 @@ class Notify
     public function setReason(string $reason): self
     {
         $this->reason = $reason;
+
+        return $this;
+    }
+
+    public function isIsRead(): ?bool
+    {
+        return $this->isRead;
+    }
+
+    public function setIsRead(bool $isRead): self
+    {
+        $this->isRead = $isRead;
+
+        return $this;
+    }
+
+    public function getObject(): ?string
+    {
+        return $this->object;
+    }
+
+    public function setObject(string $object): self
+    {
+        $this->object = $object;
 
         return $this;
     }

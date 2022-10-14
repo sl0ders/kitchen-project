@@ -1,20 +1,43 @@
 {% extends 'base.html.twig' %}
+{% trans_default_domain "kitchen-project" %}
 
-{% block title %}Hello RecipeController!{% endblock %}
+{% block title %}{{ "title.recipe.index"|trans }}{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/quent/IdeaProjects/Kitchen-project/src/Controller/RecipeController.php'|file_link(0) }}">src/Controller/RecipeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/quent/IdeaProjects/Kitchen-project/templates/recipe/index.html.twig'|file_link(0) }}">templates/recipe/index.html.twig</a></code></li>
-    </ul>
-</div>
+    {% if is_granted("ROLE_USER") %}
+    <a href="{{ path('app_recipe_new') }}" class="btn" style="background:#97c95d">
+        <div class="text-white fa fa-plus"> {{ "button.recipe.propose"|trans }}</div>
+    </a>
+    {% endif %}
+    <div class="d-flex justify-content-center align-items-center flex-wrap">
+    {% for recipe in recipes %}
+            <div class="col-md-3 border m-2 card" style="height: 250px">
+                <img class="background-recipe" src="{{ vich_uploader_asset(recipe, "backgroundFile") }}" alt="">
+                <div class="card-title d-block d-flex align-items-center justify-content-between">
+                    <h3>{{ recipe.title }}</h3>
+                    {% if is_granted("ROLE_USER") %}
+                        {% if favoritesUsersIds is defined and recipe.id in favoritesUsersIds %}
+                            <a title="{{ "button.recipe.removeFavorite"|trans }}" style="font-size: 1.5em"
+                               href="{{ path('change_favorite', {'id': recipe.id}) }}">
+                                <img src="{{ asset('img/svg/Love_Heart_SVG.svg.png') }}" width="20"
+                                     alt="{{ "button.recipe.removeFavorite"|trans }}">
+                            </a>
+                        {% else %}
+                            <a title="{{ "button.recipe.addFavorite"|trans }}" style="font-size: 1.5em"
+                               href="{{ path('change_favorite', {'id': recipe.id}) }}">
+                                <img src="{{ asset('img/svg/iconmonstr-heart-thin.svg') }}" width="20"
+                                     alt="{{ "button.recipe.addFavorite"|trans }}">
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <div class="card-body">{{ recipe.resume }}</div>
+                <div class="card-footer text-center d-flex align-items-center justify-content-between">
+                    <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}"
+                       class="btn btn-primary">{{ "button.recipe.consulting"|trans }}
+                    </a>
+                </div>
+            </div>
+    {% endfor %}
+    </div>
 {% endblock %}

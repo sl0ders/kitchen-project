@@ -19,18 +19,15 @@ class Step
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $time = null;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $time = '';
 
     #[ORM\Column]
     private ?bool $isCooking = null;
 
     #[ORM\ManyToOne(inversedBy: 'steps')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?user $author = null;
-
-    #[ORM\ManyToMany(targetEntity: Ingredient::class)]
-    private Collection $Ingredients;
+    private ?User $author = null;
 
     #[ORM\ManyToOne(inversedBy: 'steps')]
     #[ORM\JoinColumn(nullable: false)]
@@ -42,11 +39,17 @@ class Step
     #[ORM\OneToMany(mappedBy: 'step', targetEntity: Mark::class)]
     private Collection $marks;
 
+    #[ORM\Column(length: 255)]
+    private ?string $title = null;
+
+    #[ORM\OneToMany(mappedBy: 'step', targetEntity: Ingredients::class)]
+    private Collection $ingredients;
+
     public function __construct()
     {
-        $this->Ingredients = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->marks = new ArrayCollection();
+        $this->ingredients = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -66,12 +69,12 @@ class Step
         return $this;
     }
 
-    public function getTime(): ?\DateTimeInterface
+    public function getTime(): ?string
     {
         return $this->time;
     }
 
-    public function setTime(?\DateTimeInterface $time): self
+    public function setTime(?string $time): self
     {
         $this->time = $time;
 
@@ -90,38 +93,14 @@ class Step
         return $this;
     }
 
-    public function getAuthor(): ?user
+    public function getAuthor(): ?User
     {
         return $this->author;
     }
 
-    public function setAuthor(?user $author): self
+    public function setAuthor(?User $author): self
     {
         $this->author = $author;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Ingredient>
-     */
-    public function getIngredients(): Collection
-    {
-        return $this->Ingredients;
-    }
-
-    public function addIngredient(Ingredient $ingredient): self
-    {
-        if (!$this->Ingredients->contains($ingredient)) {
-            $this->Ingredients->add($ingredient);
-        }
-
-        return $this;
-    }
-
-    public function removeIngredient(Ingredient $ingredient): self
-    {
-        $this->Ingredients->removeElement($ingredient);
 
         return $this;
     }
@@ -192,6 +171,48 @@ class Step
             // set the owning side to null (unless already changed)
             if ($mark->getStep() === $this) {
                 $mark->setStep(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Ingredients>
+     */
+    public function getIngredients(): Collection
+    {
+        return $this->ingredients;
+    }
+
+    public function addIngredient(Ingredients $ingredient): self
+    {
+        if (!$this->ingredients->contains($ingredient)) {
+            $this->ingredients->add($ingredient);
+            $ingredient->setStep($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIngredient(Ingredients $ingredient): self
+    {
+        if ($this->ingredients->removeElement($ingredient)) {
+            // set the owning side to null (unless already changed)
+            if ($ingredient->getStep() === $this) {
+                $ingredient->setStep(null);
             }
         }
 

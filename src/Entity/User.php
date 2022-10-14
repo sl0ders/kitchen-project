@@ -67,6 +67,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'receiver', targetEntity: Notify::class)]
     private Collection $notifies;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: RecipeParticipation::class)]
+    private Collection $recipeParticipations;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserFavoriteRecipe::class, orphanRemoval: true)]
+    private Collection $userFavoriteRecipes;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserConsultation::class, orphanRemoval: true)]
+    private Collection $userConsultations;
+
     public function __construct()
     {
         $this->recipes = new ArrayCollection();
@@ -75,6 +84,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->marks = new ArrayCollection();
         $this->pictures = new ArrayCollection();
         $this->notifies = new ArrayCollection();
+        $this->recipeParticipations = new ArrayCollection();
+        $this->userFavoriteRecipes = new ArrayCollection();
+        $this->userConsultations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -362,6 +374,96 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($notify->getReceiver() === $this) {
                 $notify->setReceiver(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, RecipeParticipation>
+     */
+    public function getRecipeParticipations(): Collection
+    {
+        return $this->recipeParticipations;
+    }
+
+    public function addRecipeParticipation(RecipeParticipation $recipeParticipation): self
+    {
+        if (!$this->recipeParticipations->contains($recipeParticipation)) {
+            $this->recipeParticipations->add($recipeParticipation);
+            $recipeParticipation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecipeParticipation(RecipeParticipation $recipeParticipation): self
+    {
+        if ($this->recipeParticipations->removeElement($recipeParticipation)) {
+            // set the owning side to null (unless already changed)
+            if ($recipeParticipation->getUser() === $this) {
+                $recipeParticipation->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserFavoriteRecipe>
+     */
+    public function getUserFavoriteRecipes(): Collection
+    {
+        return $this->userFavoriteRecipes;
+    }
+
+    public function addUserFavoriteRecipe(UserFavoriteRecipe $userFavoriteRecipe): self
+    {
+        if (!$this->userFavoriteRecipes->contains($userFavoriteRecipe)) {
+            $this->userFavoriteRecipes->add($userFavoriteRecipe);
+            $userFavoriteRecipe->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserFavoriteRecipe(UserFavoriteRecipe $userFavoriteRecipe): self
+    {
+        if ($this->userFavoriteRecipes->removeElement($userFavoriteRecipe)) {
+            // set the owning side to null (unless already changed)
+            if ($userFavoriteRecipe->getUser() === $this) {
+                $userFavoriteRecipe->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserConsultation>
+     */
+    public function getUserConsultations(): Collection
+    {
+        return $this->userConsultations;
+    }
+
+    public function addUserConsultation(UserConsultation $userConsultation): self
+    {
+        if (!$this->userConsultations->contains($userConsultation)) {
+            $this->userConsultations->add($userConsultation);
+            $userConsultation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserConsultation(UserConsultation $userConsultation): self
+    {
+        if ($this->userConsultations->removeElement($userConsultation)) {
+            // set the owning side to null (unless already changed)
+            if ($userConsultation->getUser() === $this) {
+                $userConsultation->setUser(null);
             }
         }
 

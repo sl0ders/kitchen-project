@@ -1,0 +1,30 @@
+{% trans_default_domain "kitchen-project" %}
+<div class="modal fade" id="modalStepTwo" tabindex="-1" role="dialog" aria-labelledby="modalStepTwoLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalStepTwoLabel">{{ "text.recipe.construction.stepTwo"|trans }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {{ form_start(formIngredients) }}
+            <div class="modal-body">
+                {{ form_row(formIngredients.quantity) }}
+                {{ form_row(formIngredients.unity) }}
+                {{ form_row(formIngredients.name) }}
+                <a onclick="" class="btn btn-success">
+                    <i class="fas fa-plus-square"></i></a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#modalStepOne">{{ "form.button.return"|trans }}</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ "form.button.close"|trans }}</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#modalstepTwo">
+                    {{ "text.recipe.construction.stepTwo"|trans }}
+                </button>
+            </div>
+            {{ form_end(formStep) }}
+        </div>
+    </div>
+</div>

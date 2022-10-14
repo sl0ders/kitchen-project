@@ -14,4 +14,8 @@ constraint:
     lastname:
       notblank: "Un nom est obligatoire"
 
-
+  recipe:
+    title:
+      length:
+        max: "Le titre de la recette comporte trop de caractère"
+      notBlank: "Le titre est obligatoire"

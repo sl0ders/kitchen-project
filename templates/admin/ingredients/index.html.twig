@@ -1,0 +1,40 @@
+{% extends 'admin/base.html.twig' %}
+{% trans_default_domain 'kitchen-project' %}
+
+{% block title %}{{ "title.ingredient.admin.index" | trans }}{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mt-5">{{ "title.ingredient.admin.index" | trans }}</h1>
+
+    <table class="table" id="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Unity</th>
+                <th>Quantity</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ingredient in ingredients %}
+            <tr>
+                <td>{{ ingredient.id }}</td>
+                <td>{{ ingredient.name }}</td>
+                <td>{{ ingredient.unity }}</td>
+                <td>{{ ingredient.quantity }}</td>
+                <td>
+                    <a href="{{ path('admin_ingredients_show', {'id': ingredient.id}) }}"><span class="fa fa-eye text-primary fa-lg"></span></a>
+                    <a href="{{ path('admin_ingredients_edit', {'id': ingredient.id}) }}"><span class="fa fa-edit text-warning fa-lg"></span></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">{{ 'text.noRecordsFound' | trans }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_ingredients_new') }}" class="btn btn-success btn-lg text-white" style="width:50px; height:50px"><span class="fa fa-plus text-success fa-lg"></span></a>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'admin/base.html.twig' %}
+{% trans_default_domain 'kitchen-project' %}
+
+{% block title %}{{ 'title.notify.new'| trans }}{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mt-5">{{ 'title.notify.new'| trans }}</h1>
+
+    {{ include('admin/notify/_form.html.twig') }}
+
+    <a href="{{ path('admin_notify_index') }}">back to list</a>
+{% endblock %}

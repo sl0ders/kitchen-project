@@ -1,0 +1,27 @@
+{% trans_default_domain "kitchen-project" %}
+
+<div class="header admin">
+    <div class="nav">
+        <div class="logo"><img src="{{ asset('img/CoopKitchenLogo.png') }}" alt=""></div>
+        <div class="search">
+            <label for="search-bar">
+                <input class="search-bar" id="search-bar" placeholder="{{ "input.placeholder.search"|trans }}"/>
+            </label>
+            <div class="search-logo"><i class="fa fa-search"></i></div>
+        </div>
+        <div class="menu">
+            {% if not is_granted('ROLE_USER') %}
+                <div class="item"><a href="{{ path('app_login') }}">{{ "header.button.signIn"|trans }}</a></div>
+                <div class="item"><a href="{{ path('app_signup') }}">{{ "header.button.signUp"|trans }}</a></div>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <div class="item"><a href="">{{ "header.button.management"|trans }}</a></div>
+            {% endif %}
+            {% if is_granted('ROLE_USER') %}
+                <div class="item"><a href="{{ path('app_user_account', {'firstname': app.user.firstname}) }}">{{ "header.button.my_account"|trans }}</a></div>
+                <div class="item"><a href="{{ path('app_logout') }}">{{ "header.button.logout"|trans }}</a></div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="overflow"></div>
+</div>

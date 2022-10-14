@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class NotifyController extends AbstractController
 {
-    #[Route('/notify', name: 'app_notify')]
+    #[Route('/Notify', name: 'app_notify')]
     public function index(): Response
     {
         return $this->render('notify/index.html.twig', [

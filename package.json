@@ -1,39 +1,104 @@
 {
+
   "name": "kitchen-project",
+
   "version": "1.0.0",
+
   "description": "Site de partage de recette",
+
   "main": "index.js",
+
   "directories": {
+
     "test": "tests"
+
   },
+
   "scripts": {
+
     "dev-server": "encore dev-server",
+
     "dev": "encore dev",
+
     "watch": "encore dev --watch",
+
     "build": "encore production --progress",
+
     "sass-watch": "sass --watch ./assets/styles/app.scss ./assets/styles/app.css",
+
     "run-app": "symfony serve"
+
   },
+
   "repository": {
+
     "type": "git",
+
     "url": "git+https://github.com/sl0ders/kitchen-project.git"
+
   },
+
   "keywords": [
+
     "kitchen-proj"
+
   ],
+
   "author": "Quentin Sommesous",
+
   "license": "ISC",
+
   "bugs": {
+
     "url": "https://github.com/sl0ders/kitchen-project/issues"
+
   },
+
   "homepage": "https://github.com/sl0ders/kitchen-project#readme",
+
   "dependencies": {
-    "@symfony/stimulus-bridge": "^3.2.1",
-    "@symfony/webpack-encore": "^3.0.0"
+
+    "@symfony/webpack-encore": "^3.0.0",
+
+    "bootstrap": "^5.0.2",
+
+    "datatables.net": "^1.12.1",
+
+    "datatables.net-bs5": "^1.12.1",
+
+    "encore": "^0.0.30-beta",
+
+    "jquery": "^3.6.0",
+
+    "mdb-ui-kit": "^4.4.0",
+
+    "node-sass": "^6.0.1",
+
+    "popper": "^1.0.1",
+
+    "popper.js": "^1.16.1",
+
+    "production": "^0.0.2",
+
+    "sass-loader": "^13.0.2"
+
   },
+
   "devDependencies": {
+
+    "core-js": "^3.0.0",
+
+    "file-loader": "^6.0.0",
+
+    "regenerator-runtime": "^0.13.2",
+
     "sass": "^1.54.3",
-    "sass-loader": "^13.0.0",
-    "webpack-notifier": "^1.15.0"
+
+    "webpack-merge": "^5.8.0",
+
+    "webpack-notifier": "^1.6.0"
+
   }
+
 }
+

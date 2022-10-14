@@ -1,0 +1,15 @@
+{% trans_default_domain "kitchen-project" %}
+<div class="left-side admin" style="height: 1000px">
+    <div class="menu">
+        <h3>{{ "leftSide.title"|trans }}</h3>
+        <div class="list">
+            <a class="menu-item" href="{{ path('admin_recipe_index') }}"><img src="{{ asset('img/svg/cook-book.png') }}" width="25" alt="">&ensp;{{ "admin.leftSide.recipeManagement"|trans }}</a>
+            <a class="menu-item" href="{{ path('admin_comment_index') }}"><img src="{{ asset('img/svg/comment.png') }}" width="25" alt="">&ensp;{{ "admin.leftSide.commentManagement"|trans }}</a>
+            <a class="menu-item" href="{{ path('admin_ingredients_index') }}"><img src="{{ asset('img/svg/ingredient.png') }}" width="25" alt="">&ensp;{{ "admin.leftSide.ingredientManagement"|trans }}</a>
+            <a class="menu-item" href="{{ path('admin_mark_index') }}"><img src="{{ asset('img/svg/warning.png') }}" width="25" alt="">&ensp;{{ "admin.leftSide.markManagement"|trans }}</a>
+            <a class="menu-item" href="{{ path('admin_picture_index') }}"><img src="{{ asset('img/svg/picture.png') }}" width="25" alt="">&ensp;{{ "admin.leftSide.pictureManagement"|trans }}</a>
+            <a class="menu-item" href="{{ path('admin_step_index') }}"><img src="{{ asset('img/svg/recipe.png') }}" width="25" alt="">&ensp;{{ "admin.leftSide.stepManagement"|trans }}</a>
+            <a class="menu-item" href="{{ path('admin_notify_index') }}"><img src="{{ asset('img/svg/bell.png') }}" width="25" alt="">&ensp;{{ "admin.leftSide.notifyManagement"|trans }}</a>
+        </div>
+    </div>
+</div>

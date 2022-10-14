@@ -1,0 +1,13 @@
+{% trans_default_domain "kitchen-project" %}
+<div class="left-side" style="height: 1000px">
+    <div class="menu">
+        <h3>{{ "leftSide.title"|trans }}</h3>
+        <div class="list">
+            <a class="menu-item" href="{{ path('recipes') }}">{{ "leftSide.recipeList"|trans }}</a>
+            <a class="menu-item" href="{{ path('user_recipe', {'firstname': app.user.firstname}) }}">{{ "leftSide.myRecipe"|trans }}</a>
+            <a class="menu-item" href="{{ path('user_participation', {'firstname': app.user.firstname}) }}">{{ "leftSide.myParticipation"|trans }}</a>
+            <a class="menu-item" href="{{ path('user_favorite', {'firstname': app.user.firstname}) }}">{{ "leftSide.myFavorite"|trans }}</a>
+            <a class="menu-item" href="{{ path('app_user_account', {'firstname': app.user.firstname}) }}">{{ "leftSide.myAccount"|trans }}</a>
+        </div>
+    </div>
+</div>

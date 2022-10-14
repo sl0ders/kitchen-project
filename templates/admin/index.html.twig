@@ -1,0 +1,16 @@
+{% extends 'admin/base.html.twig' %}
+{% trans_default_domain 'kitchen-project' %}
+{% block title %}{{ "admin.title.index"|trans }}{% endblock %}
+
+
+{% block body %}
+    <div class="case-container">
+        <a class="case" href="{{ path('admin_recipe_index') }}"><img src="{{ asset('img/svg/cook-book.png') }}" alt="" width="150"></a>
+        <a class="case" href="{{ path('admin_comment_index') }}"><img src="{{ asset('img/svg/comment.png') }}" alt="" width="150"></a>
+        <a class="case" href="{{ path('admin_notify_index') }}"><img src="{{ asset('img/svg/bell.png') }}" alt="" width="150"></a>
+        <a class="case" href="{{ path("admin_mark_index") }}"><img src="{{ asset('img/svg/warning.png') }}" alt="" width="150"></a>
+        <a class="case" href="{{ path("admin_step_index") }}"><img src="{{ asset('img/svg/recipe.png') }}" alt="" width="150"></a>
+        <a class="case" href="{{ path("admin_picture_index") }}"><img src="{{ asset('img/svg/picture.png') }}" alt="" width="150"></a>
+    </div>
+{% endblock %}
+

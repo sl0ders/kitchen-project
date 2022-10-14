@@ -1,0 +1,13 @@
+{% extends 'admin/base.html.twig' %}
+{% trans_default_domain 'kitchen-project' %}
+{% block title %}{{ "title.recipe.edit"| trans({"object" : recipe.title}) }}{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mt-5">{{ "title.recipe.edit"| trans({"object" : recipe.title}) }}</h1>
+
+    {{ include('admin/recipe/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('admin_recipe_index') }}">back to list</a>
+
+    {{ include('admin/recipe/_delete_form.html.twig') }}
+{% endblock %}

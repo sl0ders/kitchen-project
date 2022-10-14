@@ -1,0 +1,12 @@
+{% extends 'admin/base.html.twig' %}
+{% trans_default_domain 'kitchen-project' %}
+
+{% block title %}{{ "title.picture.new"| trans }}{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mt-5">{{ "title.picture.new"| trans }}</h1>
+
+    {{ include('admin/picture/_form.html.twig') }}
+
+    <a href="{{ path('admin_picture_index') }}">back to list</a>
+{% endblock %}

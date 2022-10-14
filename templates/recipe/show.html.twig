@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{%trans_default_domain "kitchen-project" %}
+{% block title %}{{ "title.comment.show"| trans({"object" : recipe.title}) }}{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row mt-5">
+            <div class="col-md-3">
+                <div class="border-right border-white">
+                    <div class="row mt-5">
+                        {% for picture in recipe.pictures %}
+                            <div class="col mt-2">
+                                <img class="picture-recipe" src="{{ vich_uploader_asset(picture, "pictureFile") }}" alt="" width="150" height="100">
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <h3 class="text-center">{{ "text.recipe.recipe"|trans }} {{ recipe.title }}</h3>
+                <strong class="ml-5">{{ "text.steps"|trans }}</strong>
+                <ul class="ml-5">
+                    {% for step in recipe.steps %}
+                        <li>{{ step.title }}</li>
+                        <p>{{ step.content }}</p>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

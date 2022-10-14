@@ -1,0 +1,14 @@
+{% extends 'admin/base.html.twig' %}
+{% trans_default_domain 'kitchen-project' %}
+
+{% block title %}{{ "title.comment.edit"| trans({"%object%" : comment.id}) }}{% endblock %}
+
+{% block body %}
+    <h1 class="text-center mt-5">{{ "title.comment.edit"| trans({"%object%" : comment.id}) }}</h1>
+
+    {{ include('admin/comment/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('admin_comment_index') }}">back to list</a>
+
+    {{ include('admin/comment/_delete_form.html.twig') }}
+{% endblock %}

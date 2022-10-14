@@ -1,10 +1,118 @@
 {% extends 'base.html.twig' %}
-
+{% trans_default_domain 'kitchen-project' %}
+    {% block title %}
+        {{ "title.user.index" | trans }}
+    {% endblock %}
 {% block body %}
-
+    <h1 class="text-center mt-5">{{ "title.user.index" | trans }}</h1>
+    <ol class="carousel-indicators">
+        <li style="color: #0b51c5" data-target="#blogCarousel" data-slide-to="0" class="active"></li>
+        <li style="color: #0b51c5" data-target="#blogCarousel" data-slide-to="1"></li>
+        <li style="color: #0b51c5" data-target="#blogCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="border-bottom border-top my-2">
+        <div id="blogCarousel" class="carousel slide container-blog" data-ride="carousel">
+            <div class="carousel-inner my-3">
+                <div class="carousel-item active">
+                    <div class="row d-flex justify-content-center">
+                        {% for recipe in lastRecipe|slice(0, 3) %}
+                            <div class="col-md-3 border mx-4 card" style="height: 250px">
+                                <img class="background-recipe" src="{{ vich_uploader_asset(recipe, "backgroundFile") }}" alt="">
+                                <div class="card-title d-block d-flex align-items-center justify-content-between">
+                                    <h3>{{ recipe.title }}</h3>
+                                    {% if is_granted("ROLE_USER") %}
+                                        {% if favoritesUsersIds is defined and recipe.id in favoritesUsersIds %}
+                                            <a title="{{ "button.recipe.removeFavorite"|trans }}" style="font-size: 1.5em"
+                                               href="{{ path('change_favorite', {'id': recipe.id}) }}">
+                                                <img src="{{ asset('img/svg/Love_Heart_SVG.svg.png') }}" width="20"
+                                                     alt="{{ "button.recipe.removeFavorite"|trans }}">
+                                            </a>
+                                        {% else %}
+                                            <a title="{{ "button.recipe.addFavorite"|trans }}" style="font-size: 1.5em"
+                                               href="{{ path('change_favorite', {'id': recipe.id}) }}">
+                                                <img src="{{ asset('img/svg/iconmonstr-heart-thin.svg') }}" width="20"
+                                                     alt="{{ "button.recipe.addFavorite"|trans }}">
+                                            </a>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                                <div class="card-body">{{ recipe.resume }}</div>
+                                <div class="card-footer text-center d-flex align-items-center justify-content-between">
+                                    <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}"
+                                       class="btn btn-primary">{{ "button.recipe.consulting"|trans }}
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row d-flex justify-content-center">
+                        {% for recipe in lastRecipe|slice(3,3) %}
+                            <div class="col-md-3 border mx-4 card" style="height: 250px">
+                                <img class="background-recipe" src="{{ vich_uploader_asset(recipe, "backgroundFile") }}" alt="">
+                                <div class="card-title d-block d-flex align-items-center justify-content-between">
+                                    <h3>{{ recipe.title }}</h3>
+                                    {% if is_granted("ROLE_USER") %}
+                                        {% if favoritesUsersIds is defined and recipe.id in favoritesUsersIds %}
+                                            <a title="{{ "button.recipe.removeFavorite"|trans }}" style="font-size: 1.5em"
+                                               href="{{ path('change_favorite', {'id': recipe.id}) }}">
+                                                <img src="{{ asset('img/svg/Love_Heart_SVG.svg.png') }}" width="20"
+                                                     alt="{{ "button.recipe.removeFavorite"|trans }}">
+                                            </a>
+                                        {% else %}
+                                            <a title="{{ "button.recipe.addFavorite"|trans }}" style="font-size: 1.5em"
+                                               href="{{ path('change_favorite', {'id': recipe.id}) }}">
+                                                <img src="{{ asset('img/svg/iconmonstr-heart-thin.svg') }}" width="20"
+                                                     alt="{{ "button.recipe.addFavorite"|trans }}">
+                                            </a>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                                <div class="card-body">{{ recipe.resume }}</div>
+                                <div class="card-footer text-center d-flex align-items-center justify-content-between">
+                                    <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}"
+                                       class="btn btn-primary">{{ "button.recipe.consulting"|trans }}
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row d-flex justify-content-center">
+                        {% for recipe in lastRecipe|slice(3,6) %}
+                            <div class="col-md-3 border mx-4 card" style="height: 250px">
+                                <img class="background-recipe" src="{{ vich_uploader_asset(recipe, "backgroundFile") }}" alt="">
+                                <div class="card-title d-block d-flex align-items-center justify-content-between">
+                                    <h3>{{ recipe.title }}</h3>
+                                    {% if is_granted("ROLE_USER") %}
+                                        {% if favoritesUsersIds is defined and recipe.id in favoritesUsersIds %}
+                                            <a title="{{ "button.recipe.removeFavorite"|trans }}" style="font-size: 1.5em"
+                                               href="{{ path('change_favorite', {'id': recipe.id}) }}">
+                                                <img src="{{ asset('img/svg/Love_Heart_SVG.svg.png') }}" width="20"
+                                                     alt="{{ "button.recipe.removeFavorite"|trans }}">
+                                            </a>
+                                        {% else %}
+                                            <a title="{{ "button.recipe.addFavorite"|trans }}" style="font-size: 1.5em"
+                                               href="{{ path('change_favorite', {'id': recipe.id}) }}">
+                                                <img src="{{ asset('img/svg/iconmonstr-heart-thin.svg') }}" width="20"
+                                                     alt="{{ "button.recipe.addFavorite"|trans }}">
+                                            </a>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                                <div class="card-body">{{ recipe.resume }}</div>
+                                <div class="card-footer text-center d-flex align-items-center justify-content-between">
+                                    <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}"
+                                       class="btn btn-primary">{{ "button.recipe.consulting"|trans }}
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
-
-{% block title %}
-
-{% endblock %}
-

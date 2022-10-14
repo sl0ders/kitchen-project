@@ -1,0 +1,55 @@
+{% trans_default_domain "kitchen-project" %}
+<div class="modal fade" id="modalStepTwo" tabindex="-1" role="dialog" aria-labelledby="modalStepTwoLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalStepTwoLabel">{{ "text.recipe.construction.stepTwo"|trans }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+
+                </div>
+                {{ form_start(formStep) }}
+                <div class="modal-body">
+                    {{ form_row(formStep.content) }}
+                    {{ form_row(formStep.isCooking) }}
+                    <div class="md-form">
+                        {{ form_row(formStep.time) }}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="checkIngredient"/>
+                            <label class="form-check-label" for="checkIngredient">Un ou des ingredients?</label>
+                        </div>
+                        <ul class="ingredientList"></ul>
+                        <div class="blockIngredient">
+                            <div class="md-form">
+                                {{ form_label(formStep.ingredientName) }}
+                                {{ form_widget(formStep.ingredientName) }}
+                            </div>
+
+                            <div class="md-form">
+                                {{ form_label(formStep.ingredientQuantity ) }}
+                                {{ form_widget(formStep.ingredientQuantity) }}
+                            </div>
+                            <div class="md-form">
+                                {{ form_label(formStep.ingredientUnity) }}
+                                {{ form_widget(formStep.ingredientUnity) }}
+                            </div>
+                            <button class="btn btn-success btn-add-step" onclick="addIngredient()" type="button">{{ "form.button.add"|trans }}</button>
+                            <button class="btn btn-success btn-validate-step" type="button">{{ "form.button.validateIngredient"|trans }}</button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-target="#modalStepOne">{{ "form.button.return"|trans }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+                {{ form_end(formStep) }}
+            </div>
+        </div>
+    </div>
+</div>
